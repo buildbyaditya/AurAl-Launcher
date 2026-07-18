@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AurAl Launcher</title>
+    <meta name="description" content="Techno-futurist brutalist tool to strip locales and append Contributor IDs to Microsoft URLs.">
+    <!-- Google Fonts: Syncopate, Space Grotesk, Space Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Grid Lines Overlay -->
+    <div class="grid-background-overlay" aria-hidden="true"></div>
+
+    <div class="app-container">
+        <!-- System Top Bar Header -->
+        <header class="sys-header">
+            <div class="header-segment brand-segment">
+                <span class="crosshair-icon">+</span>
+                <span class="brand-title">AurAl Launcher</span>
+                <span class="brand-subtitle">buildbyaditya</span>
+            </div>
+            <div class="header-segment sys-telemetry hide-mobile">
+                <span>SYS.VER: 2.0.4</span>
+                <span class="divider">|</span>
+                <span>GRID: ACTIVE</span>
+                <span class="divider">|</span>
+                <span id="telemetry-clock">00:00:00 IST</span>
+            </div>
+            <div class="header-segment status-segment">
+                <span class="status-dot"></span>
+                <span id="sys-status-text">SYSTEM READY</span>
+            </div>
+        </header>
+
+        <!-- System Navigation Bar -->
+        <nav class="sys-nav">
+            <button id="nav-btn-1" class="nav-tab active-tab" data-page="1">
+                <span class="nav-num">[01]</span> CONTRIBUTOR ID
+            </button>
+            <button id="nav-btn-2" class="nav-tab" data-page="2">
+                <span class="nav-num">[02]</span> URL MATRIX
+            </button>
+            <button id="nav-btn-3" class="nav-tab" data-page="3">
+                <span class="nav-num">[03]</span> LAUNCH URLs
+            </button>
+        </nav>
+
+        <!-- Main Workspace Viewport -->
+        <main class="viewport-main">
+
+            <!-- PAGE 1: CONTRIBUTOR INITIALIZATION -->
+            <section id="page-1" class="page-view active-page">
+                <div class="brutalist-card init-card">
+                    <div class="card-header">
+                        <div class="corner-bracket top-left">[</div>
+                        <div class="corner-bracket top-right">]</div>
+                        <span class="step-num">SECTION 01</span>
+                        <h1 class="card-title">CONTRIBUTOR INITIALIZATION</h1>
+                        <span class="tech-stamp">SYS_REQ // REQUIRED_ID</span>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="intro-desc">
+                            ENTER YOUR MICROSOFT CONTRIBUTOR / MVP / STUDENT AMBASSADOR / PARTNER ID BELOW TO BEGIN URL PARAMETERIZATION.
+                        </p>
+
+                        <div class="input-group">
+                            <label for="contributor-id-input" class="brutalist-label">
+                                <span class="label-tag">&gt;&gt;</span> ENTER CONTRIBUTOR ID
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">ID:</span>
+                                <input 
+                                    type="text" 
+                                    id="contributor-id-input" 
+                                    class="brutalist-input" 
+                                    placeholder="?wt.mc_id=studentamb_123456" 
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                >
+                            </div>
+                            <div id="p1-error-msg" class="error-banner hidden" role="alert">
+                                [!] ERROR: CONTRIBUTOR ID CANNOT BE EMPTY. ENTER VALID VALUE.
+                            </div>
+                            <div class="input-hint">
+                                FORMAT EXAMPLES: <code>?wt.mc_id=studentamb_123456</code> OR <code>wt.mc_id=54321</code> OR <code>studentamb_99999</code>
+                            </div>
+                        </div>
+
+                        <div class="action-row">
+                            <button id="btn-next-page1" class="brutalist-btn btn-primary">
+                                <span class="btn-text">NEXT // PROCEED</span>
+                                <span class="btn-arrow">&rarr;</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-footer-meta">
+                        <span>LATENCY: 0.02ms</span>
+                        <span>ENC: UTF-8</span>
+                        <span class="crosshair-sm">+</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 2: URL GENERATOR -->
+            <section id="page-2" class="page-view hidden-page">
+                
+                <!-- Active ID Bar -->
+                <div class="active-id-banner">
+                    <div class="active-id-info">
+                        <span class="id-label">ACTIVE CONTRIBUTOR ID:</span>
+                        <span id="active-id-display" class="id-value">---</span>
+                    </div>
+                    <button id="btn-edit-id" class="brutalist-btn btn-sm btn-secondary">
+                        [ EDIT ID ]
+                    </button>
+                </div>
+
+                <!-- Main Generator Grid Card -->
+                <div class="brutalist-card generator-card">
+                    <div class="card-header">
+                        <div class="corner-bracket top-left">[</div>
+                        <div class="corner-bracket top-right">]</div>
+                        <span class="step-num">SECTION 02</span>
+                        <h2 class="card-title">TARGET URL MATRIX</h2>
+                        <span id="url-count-badge" class="tech-stamp">INPUTS: 1 / 50</span>
+                    </div>
+
+                    <div class="card-body">
+                        
+                        <!-- Toolbar Controls -->
+                        <div class="matrix-toolbar">
+                            <div class="toolbar-left">
+                                <button id="btn-add-url" class="brutalist-btn btn-action">
+                                    <span class="btn-icon">+</span> ADD URL FIELD
+                                </button>
+                                <button id="btn-toggle-bulk" class="brutalist-btn btn-secondary">
+                                    [ MODE: BULK PASTE ]
+                                </button>
+                            </div>
+                            <div class="toolbar-right">
+                                <button id="btn-clear-all" class="brutalist-btn btn-secondary btn-danger-hover">
+                                    RESET FIELDS
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Single Inputs List View -->
+                        <div id="single-mode-view" class="mode-view active-mode">
+                            <div id="url-fields-container" class="url-fields-list">
+                                <!-- Dynamic URL Input Rows Injected Here -->
+                            </div>
+                        </div>
+
+                        <!-- Bulk Raw Textarea View (Hidden by Default) -->
+                        <div id="bulk-mode-view" class="mode-view hidden-mode">
+                            <div class="bulk-input-container">
+                                <label for="bulk-urls-textarea" class="brutalist-label">
+                                    PASTE MULTIPLE MICROSOFT URLS (ONE PER LINE):
+                                </label>
+                                <textarea 
+                                    id="bulk-urls-textarea" 
+                                    class="brutalist-textarea" 
+                                    rows="8" 
+                                    placeholder="https://learn.microsoft.com/en-us/copilot&#10;https://learn.microsoft.com/fr-fr/azure/&#10;https://learn.microsoft.com/es-es/training/"
+                                    spellcheck="false"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Main Generate Action Button -->
+                        <div class="generate-action-wrapper">
+                            <button id="btn-generate" class="brutalist-btn btn-accent-red">
+                            <span class="btn-text">GENERATE URLS</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- OUTPUT RESULTS MANIFEST -->
+                <div id="output-section" class="brutalist-card output-card hidden-section">
+                    <div class="card-header header-accent">
+                        <div class="corner-bracket top-left">[</div>
+                        <div class="corner-bracket top-right">]</div>
+                        <span class="step-num">MANIFEST</span>
+                        <h3 class="card-title">OUTPUT MANIFEST</h3>
+                        <span id="output-count-badge" class="tech-stamp">GENERATED: 0</span>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Global Output Actions -->
+                        <div class="output-global-actions">
+                            <button id="btn-copy-all" class="brutalist-btn btn-primary btn-lg">
+                                <span class="btn-icon">&#128203;</span> COPY ALL URLS
+                            </button>
+                            <button id="btn-download-txt" class="brutalist-btn btn-secondary btn-lg">
+                                [ DOWNLOAD .TXT ]
+                            </button>
+                            <button id="btn-proceed-launcher" class="brutalist-btn btn-accent-red btn-lg">
+                                <span class="btn-text">PROCEED TO LAUNCHER &rarr;</span>
+                            </button>
+                        </div>
+
+                        <!-- Results List Grid -->
+                        <div id="output-list-container" class="output-list-grid">
+                            <!-- Injected Output Cards Here -->
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- PAGE 3: BULK URL LAUNCHER -->
+            <section id="page-3" class="page-view hidden-page">
+                
+                <!-- Active ID / Launcher Banner -->
+                <div class="active-id-banner">
+                    <div class="active-id-info">
+                        <span class="id-label">ACTIVE CONTRIBUTOR ID:</span>
+                        <span id="launcher-id-display" class="id-value">---</span>
+                    </div>
+                    <div class="banner-actions">
+                        <button id="btn-sync-urls" class="brutalist-btn btn-sm btn-secondary">
+                            [ SYNC GENERATED URLS ]
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Launcher Grid Card -->
+                <div class="brutalist-card launcher-card">
+                    <!-- Visual Accents: Corner Crosshairs -->
+                    <div class="corner-crosshair top-left">+</div>
+                    <div class="corner-crosshair top-right">+</div>
+                    <div class="corner-crosshair bottom-left">+</div>
+                    <div class="corner-crosshair bottom-right">+</div>
+
+                    <div class="card-header header-accent">
+                        <div class="corner-bracket top-left">[</div>
+                        <div class="corner-bracket top-right">]</div>
+                        <span class="step-num">SECTION 03</span>
+                        <h2 class="card-title">// SECTION 03: BULK URL LAUNCHER</h2>
+                        <span id="launch-count-badge" class="tech-stamp">READY: 0 LINKS</span>
+                    </div>
+
+                    <div class="card-body">
+                        
+                        <!-- UX Browser Warning Note -->
+                        <div class="brutalist-warning-box" role="alert">
+                            <span class="warning-tag">[!]</span>
+                            <span class="warning-text">NOTICE: YOU MUST ALLOW POP-UPS IN YOUR BROWSER SETTINGS TO LAUNCH MULTIPLE TABS.</span>
+                        </div>
+
+                        <!-- Dedicated Telemetry / Status Box -->
+                        <div class="launch-status-box">
+                            <div class="status-box-header">
+                                <span class="crosshair-icon">+</span> SYSTEM STATUS // BULK TAB DISPATCHER
+                            </div>
+                            <div class="status-box-grid">
+                                <div class="status-metric">
+                                    <span class="metric-label">PARSED LINKS:</span>
+                                    <span id="metric-parsed-count" class="metric-val">0</span>
+                                </div>
+                                <div class="status-metric">
+                                    <span class="metric-label">TARGET MODE:</span>
+                                    <span class="metric-val">MULTI-TAB (_BLANK)</span>
+                                </div>
+                                <div class="status-metric">
+                                    <span class="metric-label">DISPATCH ENGINE:</span>
+                                    <span id="metric-engine-status" class="metric-val status-idle">STANDBY</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dual Input System Container -->
+                        <div class="dual-input-container">
+                            
+                            <!-- INPUT METHOD 1: FILE UPLOAD ZONE -->
+                            <div class="input-method-block file-upload-block">
+                                <div class="method-header">
+                                    <span class="method-tag">[ METHOD 01 ]</span>
+                                    <span class="method-title">FILE UPLOAD ENGINE (.TXT)</span>
+                                </div>
+                                
+                                <div id="drop-zone" class="file-drop-zone">
+                                    <input type="file" id="txt-file-input" accept=".txt" class="hidden-file-input" aria-label="Upload TXT File">
+                                    <label for="txt-file-input" class="file-upload-label">
+                                        <span class="upload-icon">&#128194;</span>
+                                        <span class="upload-btn-text">UPLOAD .TXT FILE</span>
+                                        <span class="upload-subtext">DRAG &amp; DROP OR CLICK TO CHOOSE FILE</span>
+                                    </label>
+                                </div>
+
+                                <div class="file-status-bar">
+                                    <span class="file-status-label">FILE STATUS:</span>
+                                    <span id="file-status-name" class="file-status-val">NO FILE LOADED</span>
+                                </div>
+                            </div>
+
+                            <!-- BRUTALIST GRID SEPARATOR LINE -->
+                            <div class="grid-separator">
+                                <span class="sep-line"></span>
+                                <span class="sep-label">// OR //</span>
+                                <span class="sep-line"></span>
+                            </div>
+
+                            <!-- INPUT METHOD 2: BULK PASTE TEXTAREA -->
+                            <div class="input-method-block textarea-paste-block">
+                                <div class="method-header">
+                                    <span class="method-tag">[ METHOD 02 ]</span>
+                                    <span class="method-title">BULK PASTE MATRIX</span>
+                                    <button id="btn-clear-launch-input" class="brutalist-btn btn-sm btn-secondary btn-danger-hover">
+                                        CLEAR QUEUE
+                                    </button>
+                                </div>
+
+                                <div class="textarea-wrapper">
+                                    <textarea 
+                                        id="launch-urls-textarea" 
+                                        class="brutalist-textarea launch-textarea" 
+                                        rows="8" 
+                                        placeholder="OR PASTE BULK URLS HERE (ONE PER LINE)"
+                                        spellcheck="false"
+                                    ></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Minimalist Grid Alert for Error -->
+                        <div id="launch-error-msg" class="error-banner hidden" role="alert">
+                            [!] ERROR: NO URLS PROVIDED.
+                        </div>
+
+                        <!-- Action Launch Button -->
+                        <div class="launch-action-wrapper">
+                            <button id="btn-launch-all" class="brutalist-btn btn-launch-red">
+                                <span class="crosshair-icon">+</span>
+                                <span class="btn-text">LAUNCH ALL TABS</span>
+                                <span class="crosshair-icon">+</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer-meta">
+                        <span>MAX DISPATCH: 50 TABS</span>
+                        <span>TARGET: SEPARATE BROWSER TABS</span>
+                        <span class="crosshair-sm">+</span>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- System Footer -->
+        <footer class="sys-footer">
+            <div class="footer-left">
+                <span>aURaL // BRUTALIST TECHNO-FUTURIST UTILITY</span>
+            </div>
+            <div class="footer-right">
+                <span>DESIGN: P_STOLF // NO ROUNDED CORNERS // PITCH BLACK GRID</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
